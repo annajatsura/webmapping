@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>University of Oregon Mapping</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--    Include the reference to the Mapbox JavaScript here in the <head> of the page    -->
+	 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+
+    
+
+
+          
+    <!--    Include the reference to the Mapbox CSS here in the <head> of the page    -->
+	 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+
+    
+
+    <style>
+        /* Insert the CSS code here between the <style> tags */
+		
+		 body { margin:0; padding:0; }
+     #map { position:absolute; top:0; bottom:0; width:100%; }
+		
+		#title { z-index: 9999; 
+			background-color:white; 
+			opacity: 60%; 
+			text-align: center 
+     }
+
+
+    </style>
+  </head>
+
+  <body>
+    <!--  Insert the map div here in the <body> of the page  -->
+      <div id='map'></div>
+   
+    <!--  Insert the tile div here (part V) -->
+	 <div id='title'>
+     		<h1>Map of Boston</h1>
+     		<h2>By: Anna Jatsura</h2>
+ 	</div>
+	 
+
+    <script>
+        // Insert the JavaScript within the <script> tags, within the body   
+        // Start with the Mapbox access token here
+		 mapboxgl.accessToken = 'pk.eyJ1IjoiYWphdHN1cmEiLCJhIjoiY2xnY3Bna3k1MHViYzNxbndqd2VyeXZxbSJ9.tihVu0s0pgjqYRtO3gt-NQ'
+ 
+   
+        // Then initialize the map here
+		 var map = new mapboxgl.Map({
+			container: 'map', 
+			style: 'mapbox://styles/mapbox/dark-v11', 
+			center: [-71.0570, 42.3611],  
+			zoom: 11  
+ });
+   
+    
+        // Add popup markers here  (part IV)
+		 var popup = new mapboxgl.Popup({ offset: 25 })
+			.setHTML('Hello World. Welcome to Boston!');
+			
+		var marker = new mapboxgl.Marker()
+			.setLngLat([-71.0570, 42.3611])
+			.setPopup(popup)  
+			.addTo(map); 
+			
+		 var popup_layer = new mapboxgl.Popup({closeOnClick: false}) 
+				.setLngLat([-71.0570, 42.3611]) 
+				.setHTML('<h1>Hi Boston!</h1>') 
+				.addTo(map); 
+				
+		 var popup_layer = new mapboxgl.Popup({closeOnClick: true}) 
+
+		
+		
+        // Add any other variables such as markers here (part III)
+		 var marker = new mapboxgl.Marker()
+			.setLngLat([-71.0570, 42.3611])  
+			.addTo(map);
+			
+		var marker = new mapboxgl.Marker({color:'red'})
+			.setLngLat([-71.0570, 42.3611])  
+			.addTo(map);
+			
+		var popup_layer_voodoo = new mapboxgl.Popup({
+			closeOnClick: true, anchor: 'top-left'
+			})
+			.setLngLat([-71.0957, 42.3462])
+			.setHTML('<a href="https://www.mlb.com/redsox/ballpark">Fenway Park, Home of the Boston Red Sox</a>')
+			.addTo(map);
+
+        // Add optional advanced "On load" function here
+        
+    </script>
+
+  </body>
+
+</html>
