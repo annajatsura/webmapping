@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taylor Swift Music Video Locations</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'IM Fell DW Pica', serif; /* Set the font-family for the entire page */
+            position: relative;
+            height: 100vh;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        #panel {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translate(0, -50%);
+            width: 250px;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+        #title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+		
+        /* Media queries for responsive design */
+
+        @media (min-width: 768px) {
+            /* Adjust styles for tablets and larger screens */
+            #panel {
+                left: 20px;
+                width: 30%;
+                max-width: 400px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            /* Adjust styles for desktop screens */
+            #panel {
+                left: 40px;
+                width: 20%;
+                max-width: 400px;
+            }
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="map"></div>
+    <div id="panel">
+        <h2>Filters</h2>
+		<!-- List of each of Taylor Swift's albums -->
+        <h3>Select Albums:</h3>
+        <label><input type="checkbox" name="album" value="album1"> Taylor Swift</label><br>
+        <label><input type="checkbox" name="album" value="album2"> Fearless (Taylor's Version)</label><br>
+		<label><input type="checkbox" name="album" value="album3"> Speak Now</label><br>
+		<label><input type="checkbox" name="album" value="album4"> Red (Taylor's Version)</label><br>
+		<label><input type="checkbox" name="album" value="album5"> 1989</label><br>
+		<label><input type="checkbox" name="album" value="album6"> Reputation</label><br>
+		<label><input type="checkbox" name="album" value="album7"> Lover</label><br>
+		<label><input type="checkbox" name="album" value="album8"> Folklore</label><br>
+		<label><input type="checkbox" name="album" value="album9"> Evermore</label><br>
+		<label><input type="checkbox" name="album" value="album10"> Midnights</label><br>
+        
+        <!-- List of where in the world Taylor haas filmed a music video -->
+        <h3>Select Location:</h3>
+        <label><input type="checkbox" name="location" value="worldwide"> Worldwide</label><br>
+        <label><input type="checkbox" name="location" value="continent1"> North America</label><br>
+        <label><input type="checkbox" name="location" value="continent2"> Europe</label><br>
+		<label><input type="checkbox" name="location" value="continent3"> Africa</label><br>
+		<label><input type="checkbox" name="location" value="continent4"> South America</label><br>
+        <label><input type="checkbox" name="location" value="continent5"> Asia</label><br>
+		<label><input type="checkbox" name="location" value="continent6"> Oceania</label><br>
+        
+    </div>
+    <div id="title">
+        <h2>World Tour of Taylor Swift's Music Video Locations</h2>
+    </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWphdHN1cmEiLCJhIjoiY2xnNWY2cGlsMDJ2cTNmcG9oZWRxOGVwZyJ9.piw92Ly3ITPegTvkjCjqxg';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-120, 43],
+            zoom: 5,
+            interactive: true
+        });
+
+        // 22 music video locations
+        var markers = [
+            {
+                album: 'album1',
+                location: 'continent1',
+                coordinates: [-86.55507, 36.31935],
+                popupContent: 'Tim McGraw'
+            },
+            {
+                album: 'album1',
+                location: 'continent1',
+                coordinates: [-86.78203, 36.159405],
+                popupContent: 'Teardrops on my Guitar'
+            },
+			{
+                album: 'album3',
+                location: 'continent1',
+                coordinates: [-75.91646, 42.09835],
+                popupContent: 'Back to Decemember'
+            },
+			{
+                album: 'album3',
+                location: 'continent1',
+                coordinates: [-70.46955, 43.36114],
+                popupContent: 'Mine'
+            },
+			{
+                album: 'album2',
+                location: 'continent1',
+                coordinates: [-86.78743, 36.17825],
+                popupContent: 'White Horse'
+            },
+			{
+                album: 'album2',
+                location: 'continent1',
+                coordinates: [-86.61577, 35.85534],
+                popupContent: 'Love Story'
+            },
+			{
+                album: 'album4',
+                location: 'continent1',
+                coordinates: [48.85886, 2.33747],
+                popupContent: 'Begin Again'
+            },
+			{
+                album: 'album4',
+                location: 'continent1',
+                coordinates: [-118.80641, 34.00199],
+                popupContent: '22'
+            },
+			{
+                album: 'album5',
+                location: 'continent3',
+                coordinates: [-5.93926, 35.76023],
+                popupContent: 'Style'
+            },
+			{
+                album: 'album6',
+                coordinates: [25.13140, -20.49773],
+                location: 'continent3',
+                popupContent: 'Wildest Dreams'
+            },
+			{
+                album: 'album6',
+                coordinates: [-118.25416, 34.05040],
+                location: 'continent1',
+                popupContent: 'Delicate'
+            },
+			{
+                album: 'album6',
+                coordinates: [-74.00117, 40.70646],
+                location: 'continent1',
+                popupContent: 'look What You Made Me Do'
+            },
+			{
+                album: 'album7',
+                coordinates: [-118.32707, 34.09339],
+                location: 'continent1',
+                popupContent: 'Lover'
+            },
+			{
+                album: 'album7',
+                coordinates: [-73.98458, 40.75905],
+                location: 'continent1',
+                popupContent: 'The Man'
+            },
+			{
+                album: 'album8',
+                coordinates: [-73.98458, 40.75905],
+                location: 'continent1',
+                popupContent: 'Cardigan'
+            },
+			{
+                album: 'album9',
+                coordinates: [-73.98458, 40.75905],
+                location: 'continent1',
+                popupContent: 'Willow'
+            },
+			{
+                album: 'album9',
+                coordinates: [-73.96934, 40.76850],
+                location: 'continent1',
+                popupContent: 'Out of the Woods'
+            },
+			{
+                album: 'album9',
+                coordinates: [-73.97390, 40.77494],
+                location: 'continent1',
+                popupContent: 'Blank Space'
+            },
+			{
+                album: 'album10',
+                coordinates: [-73.98350, 40.67712],
+                location: 'continent1',
+                popupContent: 'The Story of Us'
+            },
+			{
+                album: 'album10',
+                coordinates: [-87.62712, 41.87570],
+                location: 'continent1',
+                popupContent: 'I Knew You Were Trouble'
+            },
+			
+        ];
+
+        // Create a popup for each marker and add it to the map
+        markers.forEach(function (marker) {
+            var popup = new mapboxgl.Popup({ offset: 25 }).setText(marker.popupContent);
+            var el = document.createElement('div');
+            new mapboxgl.Marker()
+              .setLngLat(marker.coordinates)
+              .setPopup(popup)
+              .addTo(map);
+
+
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+        });
+
+        // Filter markers based on user selections
+        function filterMarkers() {
+            var selectedAlbums = Array.from(document.querySelectorAll('input[name="album"]:checked')).map(function (checkbox) {
+                return checkbox.value;
+            });
+            var selectedLocations = Array.from(document.querySelectorAll('input[name="location"]:checked')).map(function (checkbox) {
+                return checkbox.value;
+            });
+
+            markers.forEach(function (marker) {
+                var albumMatch = selectedAlbums.includes(marker.album) || selectedAlbums.length === 0;
+                var locationMatch = selectedLocations.includes(marker.location) || selectedLocations.length === 0;
+
+                if (albumMatch && locationMatch) {
+                    marker.visible = true;
+                } else {
+                    marker.visible = false;
+                }
+            });
+
+            // Show or hide markers based on visibility property
+            markers.forEach(function (marker) {
+                var markerElement = document.querySelector('.marker[data-popup-content="' + marker.popupContent + '"]');
+                if (marker.visible) {
+                    markerElement.style.display = 'block';
+                } else {
+                    markerElement.style.display = 'none';
+                }
+            });
+        }
+
+        // Attach event listeners to filter checkboxes
+        var albumCheckboxes = document.querySelectorAll('input[name="album"]');
+        albumCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', filterMarkers);
+        });
+
+        var locationCheckboxes = document.querySelectorAll('input[name="location"]');
+        locationCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', filterMarkers);
+        });
+    </script>
+</body>
+</html>
+
+
